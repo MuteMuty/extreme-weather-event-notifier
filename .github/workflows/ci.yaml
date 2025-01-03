@@ -42,7 +42,7 @@ jobs:
         run: docker push registry.digitalocean.com/rso-registry/web --all-tags
 
       - name: Update web deployment file
-        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|registry.digitalocean.com/rso-registry/web|registry.digitalocean.com/rso-registry/web:'${TAG}'|' $GITHUB_WORKSPACE/web/k8s/deployment.yaml
+        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|registry.digitalocean.com/rso-registry/web|registry.digitalocean.com/rso-registry/web:'${TAG}'|' $GITHUB_WORKSPACE/web/k8s/web-deployment.yaml
 
       - name: Apply Web Deployment to DigitalOcean Kubernetes
         run: kubectl apply -f $GITHUB_WORKSPACE/web/k8s/web-deployment.yaml
